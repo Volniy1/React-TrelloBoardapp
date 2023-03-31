@@ -1,2 +1,4 @@
 # React-TrelloBoardapp
- В разработке, с п-ю библеотеки react-beautiful-dnd
+npm start to render on localhost
+
+*IN DEVELOPMENT*
