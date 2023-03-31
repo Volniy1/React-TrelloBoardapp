@@ -1,0 +1,76 @@
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+	padding: 0 20px;
+	background-color: rgb(255, 255, 255);
+	text-align: center;
+}
+
+.form-wrap {
+	display: flex;
+	gap: 10px;
+	height: 52px;
+}
+
+.login-btn {
+	color: black;
+	border: none;
+	border-radius: 5px;
+	width: 100px;
+	height: 40px;
+}
+
+.login-btn:hover {
+	cursor: pointer;
+}
+
+.login-btn:active {
+	background: #dadada;
+
+	cursor: pointer;
+}
+
+.sign-btn {
+	background: #000000c5;
+	color: rgb(255, 255, 255);
+	border: none;
+	border-radius: 5px;
+	width: 100px;
+	height: 40px;
+}
+
+.sign-btn:hover {
+	cursor: pointer;
+}
+
+.sign-btn:active {
+	background: #000000;
+	cursor: pointer;
+}
+
+.login-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	place-content: center;
+
+}
+
+.login-form {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	background-color: white;
+}
+
+.login-form-wrap {
+	display: flex;
+}
+
+.title {
+	display: block;
+	font-size: 28px;
+	font-weight: 400;
+}

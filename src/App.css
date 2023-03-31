@@ -1,0 +1,89 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: url('https://c.wallhere.com/photos/88/f0/sunset_sky_sun_lund_nature_colors_grass_night-835871.jpg!d');
+  background-size: cover;
+  margin: 0;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+
+.TaskWrapper {
+  border: none;
+  background-color: white;
+  padding: 8px;
+  margin-bottom: 8px;
+  transition: active 0.2s ease-in-out;
+}
+
+
+
+.TaskWrapper:active {
+  background-color: rgb(132, 185, 255);
+}
+
+.Title {
+  display: flex;
+  flex-flow: column-reverse;
+  text-align: center;
+  user-select: none;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #d4d4d466;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.dropdown {
+  display: flex;
+  transition: height 0.2s ease;
+  border-bottom: 0px solid white;
+  height: 0;
+  background-color: none;
+  position: absolute;
+  overflow: hidden;
+  width: fit-content;
+  margin: 0;
+  padding: 0px;
+  padding-top: 0;
+  margin-left: 166px;
+  margin-bottom: -30px;
+}
+
+.btn-form {
+  display: flex;
+  gap: 10px;
+}
+
+.Input-log-pass:focus {
+  transition: background-color 0.5s ease;
+  outline-width: 0;
+  background-color: #27272707;
+}
+
+.Login-btn:hover {
+  background: #000000e1;
+  cursor: pointer;
+}
+
+.Login-btn:active {
+  background: #000000;
+}
+
+.SignUpLink {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 19px;
+}
+
+.Input-Title-Desc:focus {
+  transition: background-color 0.5s ease;
+  outline-width: 0;
+  background-color: #27272707;
+}

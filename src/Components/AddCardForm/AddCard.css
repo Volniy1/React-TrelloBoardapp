@@ -1,0 +1,27 @@
+.add-card-form {
+	flex-direction: column;
+	padding: 15px;
+
+}
+
+.showCardForm {
+	transition: background 0.2s ease;
+	background-color: rgba(255, 255, 255, 0.219);
+
+}
+
+.add-card-form .form {
+	overflow: hidden;
+	height: 0;
+}
+
+.add-card-form .form.show {
+	transition: height 0.2s ease;
+	height: 82px;
+}
+
+.edit-btn {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
