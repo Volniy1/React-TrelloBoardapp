@@ -2,10 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-
 import '../App.css'
 import DeleteBtn from "./DeleteButtons/DeleteBtn";
+import { ReactComponent as DeleteIcon } from '../icons/delete-icon.svg';
+import { ReactComponent as ExitIcon } from '../icons/close-icon.svg';
+
 import { setState } from "./store/kanban/kanban";
+
 
 const Main = styled.div`
 	position: fixed;
@@ -20,12 +23,12 @@ const Main = styled.div`
 	 justify-content: center;
 `
 const TaskBox = styled.div`
-	gap: 10px;
 		display: flex;
+		justify-content: space-between;
     flex-direction: column;
     background-color: white;
     width: fit-content;
-    padding: 33px 16px 16px;
+    padding: 17px 16px 16px;
 		min-width: 50%;
     min-height: 30%;
     height: fit-content;
@@ -49,11 +52,6 @@ const Content = styled.textarea`
 	
 
 `
-const SubmitButton = styled.button`
-	border: none;
-  background-color: whitesmoke;
-  cursor: pointer;
-`
 
 const Container = styled.div`
 	display: flex;
@@ -61,13 +59,35 @@ const Container = styled.div`
 `
 const ButtonContainer = styled.div`
 	display: flex;
-`
+	justify-content: space-between;
+	align-items: center;
+	`
+const SubmitButton = styled.button`
+	background: #000000c5;
+			color: rgb(255, 255, 255);
+			border: none;
+			border-radius: 5px;
+			width: 100px;
+			height: 40px;
+			cursor:pointer;
+	`
 const HeaderTitle = styled.div`
 	justify-content: space-between;
   display: flex;
 	color: gray;
 	font-size: 20px;
 	font-weight: 600;
+`
+const ExitBtn = styled.button`
+	display:flex;
+	align-items:center;
+	height:fit-content;
+	background:none;
+	border:none;
+	cursor:pointer;
+	border-radius: 100%;
+	align-self: flex-end;
+	border: 1px solid white;
 `
 
 
@@ -137,6 +157,7 @@ function TaskPopUp({ id = '', header = '', content = '', onDeleteTask }) {
 	}
 	const handleKeyDown = (submitTask, closeTask, deleteTask) => (e) => {
 		if (e.key === 'Enter') {
+			console.log(e.key);
 			submitTask()
 		} else if (e.key === 'Escape') {
 			console.log('exit');
@@ -161,18 +182,23 @@ function TaskPopUp({ id = '', header = '', content = '', onDeleteTask }) {
 				)
 			}>
 			<TaskBox>
+
 				<Container>
-					<HeaderTitle>Task:
-						<DeleteBtn DeleteSmth={onDeleteTask}></DeleteBtn>
-					</HeaderTitle>
-					<Header className="Input-Title-Desc" value={isEdit ? taskHeader : header} onChange={handlerHeader(setTaskHeader)}></Header>
-				</Container>
-				<Container>
-					<HeaderTitle>Description: </HeaderTitle>
-					<Content className="Input-Title-Desc" value={isEdit ? taskContent : content} onChange={handlerContent(setTaskContent)}></Content>
+					<Container>
+						<HeaderTitle>Task:
+							<ExitBtn className="ExitIcon" onClick={handleSubmit(header, content)}><ExitIcon /></ExitBtn>
+
+						</HeaderTitle>
+						<Header className="Input-Title-Desc" value={isEdit ? taskHeader : header} onChange={handlerHeader(setTaskHeader)}></Header>
+					</Container>
+					<Container>
+						<HeaderTitle>Description: </HeaderTitle>
+						<Content className="Input-Title-Desc" value={isEdit ? taskContent : content} onChange={handlerContent(setTaskContent)}></Content>
+					</Container>
 				</Container>
 				<ButtonContainer>
-					<SubmitButton onClick={handleSubmit(taskHeader, taskContent)}>Submit</SubmitButton>
+					<SubmitButton className="SubmitButton" onClick={handleSubmit(taskHeader, taskContent)}>Submit</SubmitButton>
+					<DeleteBtn DeleteSmth={onDeleteTask} Class={'DeleteBtn'}><DeleteIcon /></DeleteBtn>
 				</ButtonContainer>
 			</TaskBox>
 		</Main>

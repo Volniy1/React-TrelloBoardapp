@@ -1,24 +1,8 @@
-import styled from "styled-components";
-
-const DeleteBtnForm = styled.button`
-	border: none;
-	user-select: none;
-	cursor: pointer;
-	background-color: #00000081;
-	height: 20px;
-	min-width: fit-content;
-	color: white;
-`
-
-
-function DeleteBtn({ DeleteSmth }) {
-
-
-
+function DeleteBtn({ DeleteSmth, Class, children }) {
 	return (
-		<DeleteBtnForm onClick={DeleteSmth}>
-			Delete
-		</DeleteBtnForm>
+		<button onClick={DeleteSmth} className={Class}>
+			{children}
+		</button>
 	)
 }
 

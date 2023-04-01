@@ -2,45 +2,67 @@ import React, { useState } from "react"
 import { Droppable, Draggable } from "react-beautiful-dnd"
 import '../App.css'
 
+import { ReactComponent as Icon } from '../icons/three-dots.svg';
 
 import styled from 'styled-components';
 import AddCardForm from "./AddCardForm/AddCardForm";
 import DeleteBtn from "./DeleteButtons/DeleteBtn";
 
+
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-	user-select: none;
+	 display: flex;
+	 flex-direction: column;
+	 user-select: none;
+	 width: 220px;
+	 border: none;
+
+
 	
-  width: 220px;
-  border: none;
-`
+	 @media (max-width: 1168px) {
+		 width:150px
+		}
+		@media (max-width: 768px) {
+			width:120px;
+		}
+		`
 const TaskList = styled.div`
-padding: 22px 8px;
- transition: background-color 0.2s ease;
- background-color: ${({ isDraggingOver }) => (isDraggingOver ? 'rgba(255, 255, 255, 0.842)' : '#ffffff94;')};
- /* ${props => (props.isDraggingOver ? 'rgb(191, 235, 255)' : 'inherit')}; */
- flex-grow: 0;
- padding-bottom: 20px;
- border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+		padding: 22px 8px;
+		 transition: background-color 0.2s ease;
+		 background-color: ${({ isDraggingOver }) => (isDraggingOver ? 'rgba(255, 255, 255, 0.842)' : '#ffffff94;')};
+		 ${props => (props.isDraggingOver ? 'rgb(191, 235, 255)' : 'inherit')};
+		 flex-grow: 0;
+		 padding-bottom: 20px;
+		 border-bottom-left-radius: 5px;
+		 border-bottom-right-radius: 5px;
+		
+		 @media (max-width: 1168px) {
+				 padding-inline:0;
+			 }
+		 `
+const Title = styled.p`
+	align-self:center;
+	padding: 0;
+  margin: 0;
+	@media (max-width: 768px) {
+		 font-size:14px
+	 }
 `
-
-const Icon = styled.img`
-	width: 20px;
-    position: absolute;
-    height: 25px;
-`
-
 const IconForm = styled.a`
-	width: 0;
+	position:relative;
 	display: flex;
-		margin-left: 190px;
+
 	cursor: pointer;
+
+	@media (max-width: 768px) {
+			position:relative;
+			}
 `
+
+
+
 
 const DropDownContext = styled.div`
-	position: absolute;
+	position: relative;
 `
 
 function Column({ column, children, index, onClickAddCard, onClickDeleteColumn }) {
@@ -67,17 +89,19 @@ function Column({ column, children, index, onClickAddCard, onClickDeleteColumn }
 					ref={provided.innerRef}
 				>
 					<div
-						className="Title"
+						className="Column-header"
 						{...provided.dragHandleProps}
 					>
 						<DropDownContext className="div">
 							<ul className="dropdown" id={`dropdown${index}`}>
-								<DeleteBtn className="delete-column-btn" DeleteSmth={onClickDeleteColumn} />
+								<DeleteBtn Class="delete-column-btn" DeleteSmth={onClickDeleteColumn}>Delete</DeleteBtn>
 							</ul>
 						</DropDownContext>
-						{column.title}
+						<Title>
+							{column.title}
+						</Title>
 						<IconForm onClick={DeleteDropDown}>
-							<Icon src="https://www.svgrepo.com/show/124304/three-dots.svg" alt="svg" />
+							<Icon className="EditIcon" alt="svg" />
 						</IconForm>
 					</div>
 					<Droppable droppableId={column.id} type="task">

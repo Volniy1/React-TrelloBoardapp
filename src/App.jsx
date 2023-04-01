@@ -22,12 +22,19 @@ const Main = styled.main`
   background-image: linear-gradient( 180deg,rgb(223 113 18 / 87%) 11.2%,rgb(1 0 40 / 75%) 88.5% );
   min-height: 100vh;
   height: 100%;
+  overflow-x:auto;
 `
 const ColumnContainer = styled.div`
   display: flex;
+  min-width:548px;
+  margin-top: 80px;
   flex-direction: row;
   justify-content: center;
   gap: 15px;
+  
+  @media (max-width: 1168px) {
+    gap:10px;
+  }
 `
 
 const App = () => {
@@ -82,30 +89,33 @@ const App = () => {
     }
 
     // Moving from one list to another
-    const startTaskIds = Array.from(start.taskIds);
-    startTaskIds.splice(source.index, 1);
-    const newStart = {
-      ...start,
-      taskIds: startTaskIds,
-    };
+    if (type === 'task') {
+      console.log(start.taskIds, 'tasks');
+      const startTaskIds = Array.from(start.taskIds);
+      startTaskIds.splice(source.index, 1);
+      const newStart = {
+        ...start,
+        taskIds: startTaskIds,
+      };
 
-    const finishTaskIds = Array.from(finish.taskIds);
-    finishTaskIds.splice(destination.index, 0, draggableId);
-    const newFinish = {
-      ...finish,
-      taskIds: finishTaskIds,
-    };
+      const finishTaskIds = Array.from(finish.taskIds);
+      finishTaskIds.splice(destination.index, 0, draggableId);
+      const newFinish = {
+        ...finish,
+        taskIds: finishTaskIds,
+      };
 
-    const newState = {
-      ...state,
-      columns: {
-        ...state.columns,
-        [newStart.id]: newStart,
-        [newFinish.id]: newFinish,
-      },
-    };
+      const newState = {
+        ...state,
+        columns: {
+          ...state.columns,
+          [newStart.id]: newStart,
+          [newFinish.id]: newFinish,
+        },
+      };
 
-    dispatch(setState(newState))
+      dispatch(setState(newState))
+    }
 
 
 
@@ -141,7 +151,7 @@ const App = () => {
 
       }
     };
-    console.log(colTasks);
+    // console.log(colTasks);
 
 
     dispatch(setState(newState))
@@ -149,8 +159,11 @@ const App = () => {
   }
 
   const onAddColumn = (title) => {
-    if (!title) return
-    console.log(title);
+    if (!title || title.length > 13) {
+      alert('Имя столбца должно содержать не больше 13 символов')
+      return
+    }
+    console.log(title.length);
     const newColID = `column-${uuid()}`
     const newState = {
       ...state,
@@ -165,7 +178,7 @@ const App = () => {
       columnOrder: [...state.columnOrder, newColID]
 
     }
-    console.log(newState);
+    // console.log(newState);
     dispatch(setState(newState))
   }
 
@@ -179,7 +192,7 @@ const App = () => {
       columns: columns,
       columnOrder: newColumnOrder
     }
-    console.log(setState(newState));
+    // console.log(setState(newState));
     dispatch(setState(newState))
   }
 
@@ -236,7 +249,7 @@ const App = () => {
             ref={provided.innerRef}
           >
             <Nav />
-            <ColumnContainer>
+            <ColumnContainer className='ColumnContainer'>
               {state.columnOrder.map((columnId, index) => {
                 const column = state.columns[columnId];
                 const tasks = column.taskIds.map(taskId => state.tasks[taskId]);

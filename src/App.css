@@ -21,13 +21,24 @@ body {
 }
 
 
+.TaskWrapper:onclick {
+  background-color: rgb(132, 185, 255);
+}
 
 .TaskWrapper:active {
   background-color: rgb(132, 185, 255);
 }
 
-.Title {
+
+.TaskWrapper:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+
+
+.Column-header {
   display: flex;
+  position: relative;
   flex-flow: column-reverse;
   text-align: center;
   user-select: none;
@@ -40,19 +51,23 @@ body {
   font-weight: 500;
 }
 
+.AcceptIcon {
+  fill: white;
+}
+
 .dropdown {
   display: flex;
-  transition: height 0.2s ease;
+  transition: height 0.3s ease;
   border-bottom: 0px solid white;
   height: 0;
   background-color: none;
   position: absolute;
+  right: 0;
   overflow: hidden;
   width: fit-content;
   margin: 0;
   padding: 0px;
   padding-top: 0;
-  margin-left: 166px;
   margin-bottom: -30px;
 }
 
@@ -86,4 +101,99 @@ body {
   transition: background-color 0.5s ease;
   outline-width: 0;
   background-color: #27272707;
+}
+
+.delete-column-btn {
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  background-color: #00000081;
+  height: 20px;
+  min-width: fit-content;
+  color: white;
+}
+
+.EditIcon {
+  position: absolute;
+  right: 5px;
+  width: 20px;
+  height: 25px;
+}
+
+.EditIcon:hover {
+  fill: rgb(255, 255, 255);
+}
+
+@media (max-width: 1168px) {
+  .EditIcon {
+    width: 15px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .EditIcon {
+    width: 10px;
+    height: 20px;
+
+    transform: rotate(90deg);
+    right: 0;
+  }
+}
+
+
+/* pop-up buttons */
+.DeleteBtn {
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  background: none;
+  width: 30px;
+  height: 20px;
+  min-width: fit-content;
+  color: white;
+}
+
+.SubmitButton:hover {
+  background-color: #202020;
+}
+
+.ChangeBtn svg {
+  fill: rgb(117, 117, 117);
+  width: 18px;
+}
+
+.ChangeBtn:hover svg {
+  fill: rgb(0, 0, 0);
+}
+
+.DeleteBtn svg {
+  fill: rgb(117, 117, 117);
+}
+
+.DeleteBtn:hover svg {
+  fill: rgb(0, 0, 0);
+}
+
+.ExitIcon svg {
+  fill: rgb(117, 117, 117);
+  width: 20px;
+}
+
+.ExitIcon:hover svg {
+  fill: rgb(0, 0, 0);
+}
+
+/*adaptivity */
+
+@media (max-width: 768px) {
+  .ChangeBtn svg {
+    width: 14px;
+  }
+}
+
+@media (max-width: 618px) {
+  .ChangeBtn svg {
+    width: 10px;
+  }
 }
